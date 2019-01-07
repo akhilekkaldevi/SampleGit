@@ -7,7 +7,7 @@ public class Main {
 		Rectangle r1 = new Rectangle(0, 0, 3, 3);
 		Rectangle r2 = new Rectangle(2, 0, 4, 4);
 		Rectangle r3 = new Rectangle(5, 5, 10, 10);
-		Rectangle.collide(r2, r3);
+		Rectangle.collide(r1, r2);
 
 		// TODO Auto-generated method stub
 

@@ -13,11 +13,16 @@ public class Rectangle {
 	}
 
 	static void collide(Rectangle r1, Rectangle r2) {
-		boolean b = true;
-		if (r1.ax1 > r2.cx1 || r2.ax1 > r1.cx1)
-			b = false;
-		if (r1.ay1 < r2.cy1 || r2.ay1 < r1.cy1)
-			b = false;
+		boolean b = false;
+		if (r1.ax1 < r2.ax1) {
+			if (r2.ax1 < r1.cx1 || r2.ay1 < r1.cy1)
+				b = true;
+		} else if (r2.ax1 < r1.ax1) {
+			if (r1.ax1 < r2.cx1 || r1.ay1 < r2.cy1)
+				b = true;
+
+		}
+
 
 		if (b) {
 			int a[] = { Math.max(r1.ax1, r2.ax1), Math.max(r1.ay1, r2.ay1), Math.min(r1.cx1, r2.cx1),
@@ -25,5 +30,7 @@ public class Rectangle {
 			System.out.println(Arrays.toString(a));
 		}
 	}
+
+	
 
 }
