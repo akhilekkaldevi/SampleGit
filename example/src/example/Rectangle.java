@@ -3,34 +3,27 @@ package example;
 import java.util.Arrays;
 
 public class Rectangle {
-	int ax1, ay1, cx1, cy1;
+	Point leftBottom;
+	Point rightTop;
 
-	public Rectangle(int ax1, int ay1, int cx1, int cy1) {
-		this.ax1 = ax1;
-		this.ay1 = ay1;
-		this.cx1 = cx1;
-		this.cy1 = cy1;
+	public Rectangle(int xOfLeftBottom, int yOfLeftBottom, int xOfrightTop, int yOfrightTop) {
+		leftBottom = new Point();
+		rightTop = new Point();
+		leftBottom.x = xOfLeftBottom;
+		leftBottom.y = yOfLeftBottom;
+		rightTop.x = xOfrightTop;
+		rightTop.y = yOfrightTop;
 	}
 
-	static void collide(Rectangle r1, Rectangle r2) {
-		boolean b = false;
-		if (r1.ax1 < r2.ax1) {
-			if (r2.ax1 < r1.cx1 || r2.ay1 < r1.cy1)
-				b = true;
-		} else if (r2.ax1 < r1.ax1) {
-			if (r1.ax1 < r2.cx1 || r1.ay1 < r2.cy1)
-				b = true;
+	public int[] isColliding(Rectangle rectangle) {
+		if (leftBottom.x > rectangle.rightTop.x || rectangle.leftBottom.x > rightTop.x)
+			return null;
+		if (leftBottom.y > rectangle.rightTop.y || rectangle.leftBottom.y > rightTop.y)
+			return null;
+		int a[] = { Math.max(leftBottom.x, rectangle.leftBottom.x), Math.max(leftBottom.y, rectangle.leftBottom.y),
+				Math.min(rightTop.x, rectangle.rightTop.x), Math.min(rightTop.y, rectangle.rightTop.y) };
+		return a;
 
-		}
-
-
-		if (b) {
-			int a[] = { Math.max(r1.ax1, r2.ax1), Math.max(r1.ay1, r2.ay1), Math.min(r1.cx1, r2.cx1),
-					Math.min(r1.cy1, r2.cy1) };
-			System.out.println(Arrays.toString(a));
-		}
 	}
-
-	
 
 }
